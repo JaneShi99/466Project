@@ -1,3 +1,8 @@
+'''
+m denotes the prime p, z/pz
+o denotes the order of the group
+'''
+
 def pseudo_f(bi,xi,yi,h,g,m):
     '''
     this is a pseudo algorithm because it 
@@ -6,18 +11,19 @@ def pseudo_f(bi,xi,yi,h,g,m):
     the A1,A2,A3 partition based on modulo 3
     '''
 
+    o = m-1 # order
     if bi % 3 == 0:
         #division A1
-        return (g * bi % m, xi + 1 % m,yi)
+        return (g * bi % m, xi + 1 % o,yi)
     if bi % 3 == 1:
         #division A2
-        return (bi*bi % m, 2*xi % m, 2*yi % m)
+        return (bi*bi % m, 2*xi % o, 2*yi % o)
     else:
         #division A3
-        return (h * bi % m, xi, yi+1 % m)
+        return (h * bi % m, xi, yi+1 % o)
     
 def pollard_rho(h,g,m):
-    xi = 5
+    xi = 6
     yi = 0
 
     DB = dict()
@@ -25,7 +31,7 @@ def pollard_rho(h,g,m):
     b = g ** xi % m
 
     for i in range(m ** 2):
-        print("iteration ", i, xi,yi,b)
+        print("iteration ", i, b,xi,yi)
         if b in DB:
             print("past item")
             print(DB[b])
