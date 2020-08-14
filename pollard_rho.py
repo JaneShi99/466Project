@@ -31,8 +31,9 @@ def pollard_rho(h,g,m):
     b = g ** xi % m
 
     for i in range(m ** 2):
-        print("iteration ", i, b,xi,yi)
+        print('iteration ', i,' b=', b,' xi=',xi,' yi=',yi)
         if b in DB:
+            print("collision detected!")
             print("past item")
             print(DB[b])
             print("new item")
